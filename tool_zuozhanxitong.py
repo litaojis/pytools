@@ -91,3 +91,24 @@ resp = requests.post(save_url, data=save_p, headers=headers)
 
 print(resp.text)
 print('日志内容：',daylogList[0]['reason'])
+
+
+
+class Loginer(object):
+    def __init__(self):
+		self.username = None
+		self.pwd = None
+	def getUserNamePwd(self):
+		try:
+			f = open('config.ini','r')
+			for line in f.readlines():
+    			k_v = line.split('=')
+				if k_v[0] == 'login.username':
+					self.username = k_v[1]
+				if k_v[0] == 'login.pwd':
+    				self.pwd = k_v[1]
+		finally:
+			if f:
+    			f.close()
+	def login(self):
+			
